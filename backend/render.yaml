@@ -6,4 +6,4 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: ALLOWED_ORIGINS
-        value: https://nellis-auction.vercel.app
+        value: https://bidflow-app.vercel.app,https://nellis-auction.vercel.app
