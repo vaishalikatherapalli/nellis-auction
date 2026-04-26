@@ -67,7 +67,7 @@ export default function PickupPanel() {
         <button
           onClick={handleScan}
           disabled={scanning}
-          className="mt-3 px-5 py-2.5 bg-cta-gradient  text-white text-sm font-semibold rounded-cta transition-colors disabled:opacity-50"
+          className="mt-3 px-5 py-2.5 bg-hero-gradient  text-white text-sm font-semibold rounded-cta transition-colors disabled:opacity-50"
         >
           {scanning ? "Scanning..." : "⚡ Scan & Optimize Route"}
         </button>
@@ -122,7 +122,7 @@ export default function PickupPanel() {
                 key={item.id}
                 className={`flex items-center gap-4 px-5 py-4 transition-colors ${checked[item.id] ? "bg-brand-100 opacity-60" : "hover:bg-brand-100"}`}
               >
-                <div className="flex items-center justify-center w-7 h-7 rounded-full bg-burgundy-50 text-primary text-xs font-bold shrink-0">
+                <div className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-50 text-primary text-xs font-bold shrink-0">
                   {item.pickup_sequence}
                 </div>
                 <div className="flex-1 min-w-0">

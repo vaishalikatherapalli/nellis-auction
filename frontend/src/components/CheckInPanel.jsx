@@ -55,7 +55,7 @@ function QRViewfinder({ state }) {
   return (
     <div className={`relative w-full h-44 bg-brand-900 rounded-cta border-2 overflow-hidden transition-colors duration-300 ${
       state === "success"  ? "border-green-500" :
-      state === "scanning" ? "border-burgundy-600" :
+      state === "scanning" ? "border-teal-600" :
       "border-brand-700"
     }`}>
       <div className="absolute inset-0 flex items-center justify-center opacity-20">
@@ -68,7 +68,7 @@ function QRViewfinder({ state }) {
       {[["top-2 left-2","border-t-2 border-l-2"],["top-2 right-2","border-t-2 border-r-2"],
         ["bottom-2 left-2","border-b-2 border-l-2"],["bottom-2 right-2","border-b-2 border-r-2"]
       ].map(([pos, border], i) => (
-        <div key={i} className={`absolute ${pos} w-5 h-5 ${border} border-burgundy-600 rounded-sm`} />
+        <div key={i} className={`absolute ${pos} w-5 h-5 ${border} border-teal-600 rounded-sm`} />
       ))}
       {state === "idle" && (
         <div className="absolute inset-0 flex items-center justify-center">
@@ -77,9 +77,9 @@ function QRViewfinder({ state }) {
       )}
       {state === "scanning" && (
         <>
-          <div className="animate-scan absolute left-0 right-0 h-0.5 bg-burgundy-600" style={{ top: 8 }} />
+          <div className="animate-scan absolute left-0 right-0 h-0.5 bg-teal-600" style={{ top: 8 }} />
           <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-burgundy-100 text-xs font-mono animate-pulse font-bold tracking-widest">SCANNING QR...</p>
+            <p className="text-teal-100 text-xs font-mono animate-pulse font-bold tracking-widest">SCANNING QR...</p>
           </div>
         </>
       )}
@@ -97,26 +97,26 @@ function QRViewfinder({ state }) {
 function CheckInSuccess({ data, onReset }) {
   return (
     <div className="space-y-4">
-      <div className="bg-burgundy-50 border border-burgundy-100 rounded-cta p-5 shadow-itemCard">
+      <div className="bg-blue-50 border border-teal-100 rounded-cta p-5 shadow-itemCard">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-burgundy-900 font-black text-lg">Welcome, {data.customer_name}! 👋</p>
-            <p className="text-burgundy-800 text-sm mt-0.5">
+            <p className="text-brand-900 font-black text-lg">Welcome, {data.customer_name}! 👋</p>
+            <p className="text-brand-800 text-sm mt-0.5">
               {data.items.length} item{data.items.length !== 1 ? "s" : ""} ready for pickup
             </p>
           </div>
           {data.bay && (
-            <div className="bg-cta-gradient text-white rounded-cta px-4 py-2 text-center shrink-0">
+            <div className="bg-hero-gradient text-white rounded-cta px-4 py-2 text-center shrink-0">
               <p className="text-xs font-medium opacity-80">Proceed to</p>
               <p className="text-xl font-black">{data.bay}</p>
             </div>
           )}
         </div>
         {data.efficiency?.rows_visited?.length > 0 && (
-          <div className="mt-3 flex items-center gap-2 text-xs text-burgundy-800">
+          <div className="mt-3 flex items-center gap-2 text-xs text-brand-800">
             <span>🗺️ Route:</span>
             <span className="font-semibold">{data.efficiency.rows_visited.join(" → ")}</span>
-            <span className="text-burgundy-600">· ~{data.efficiency.estimated_minutes} min</span>
+            <span className="text-teal-600">· ~{data.efficiency.estimated_minutes} min</span>
           </div>
         )}
       </div>
@@ -128,7 +128,7 @@ function CheckInSuccess({ data, onReset }) {
         <div className="divide-y divide-brand-200">
           {data.items.map((item) => (
             <div key={item.id} className="flex items-center gap-3 px-5 py-3">
-              <div className="w-6 h-6 rounded-full bg-burgundy-50 text-burgundy-900 text-xs font-black flex items-center justify-center shrink-0 border border-burgundy-100">
+              <div className="w-6 h-6 rounded-full bg-blue-50 text-brand-900 text-xs font-black flex items-center justify-center shrink-0 border border-teal-100">
                 {item.pickup_sequence}
               </div>
               <div className="flex-1 min-w-0">
@@ -201,7 +201,7 @@ function ProfilePanel({ profile, onSaved }) {
             className="flex-1 border border-brand-300 rounded-cta px-3 py-2 text-sm font-mono uppercase focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <button onClick={addPlate}
-            className="px-4 py-2 bg-cta-gradient text-white text-sm rounded-cta font-semibold hover:opacity-90 transition-opacity">
+            className="px-4 py-2 bg-hero-gradient text-white text-sm rounded-cta font-semibold hover:opacity-90 transition-opacity">
             Add
           </button>
         </div>
@@ -210,7 +210,7 @@ function ProfilePanel({ profile, onSaved }) {
       {error && <p className="text-xs text-red-500">{error}</p>}
 
       <button onClick={save} disabled={saving}
-        className="w-full py-2.5 bg-cta-gradient text-white text-sm font-bold rounded-cta hover:opacity-90 transition-opacity disabled:opacity-50">
+        className="w-full py-2.5 bg-hero-gradient text-white text-sm font-bold rounded-cta hover:opacity-90 transition-opacity disabled:opacity-50">
         {saving ? "Saving..." : "Save Plates"}
       </button>
 
@@ -284,7 +284,7 @@ export default function CheckInPanel() {
     <div className="space-y-4 max-w-lg mx-auto">
       <CheckInSuccess data={checkinData} onReset={reset} />
       <button onClick={() => { reset(); setView("pickup"); }}
-        className="w-full py-3 bg-cta-gradient text-white text-sm font-bold rounded-cta hover:opacity-90 transition-opacity">
+        className="w-full py-3 bg-hero-gradient text-white text-sm font-bold rounded-cta hover:opacity-90 transition-opacity">
         📦 Go to Pickup Queue →
       </button>
     </div>
@@ -303,7 +303,7 @@ export default function CheckInPanel() {
           <button key={id} onClick={() => setView(id)}
             className={`flex-1 py-2.5 text-xs font-bold transition-colors border-b-2 ${
               view === id
-                ? "border-primary text-primary bg-burgundy-50"
+                ? "border-primary text-primary bg-blue-50"
                 : "border-transparent text-brand-600 hover:text-brand-900 hover:bg-brand-100"
             }`}>
             {label}
@@ -332,7 +332,7 @@ export default function CheckInPanel() {
               />
               <button onClick={simulatePlateScan}
                 disabled={!plateInput.trim() || scanState === "scanning" || loading}
-                className="px-5 py-2.5 bg-cta-gradient text-white text-sm font-bold rounded-cta hover:opacity-90 transition-opacity disabled:opacity-40">
+                className="px-5 py-2.5 bg-hero-gradient text-white text-sm font-bold rounded-cta hover:opacity-90 transition-opacity disabled:opacity-40">
                 {scanState === "scanning" ? "Scanning..." : "Scan"}
               </button>
             </div>
@@ -382,11 +382,11 @@ export default function CheckInPanel() {
                 onKeyDown={e => e.key === "Enter" && simulateQRScan()}
                 placeholder="CUST-7291"
                 disabled={qrState === "scanning" || loading}
-                className="flex-1 border border-brand-300 rounded-cta px-4 py-2.5 text-sm font-mono uppercase focus:outline-none focus:ring-2 focus:ring-burgundy-600 disabled:opacity-50"
+                className="flex-1 border border-brand-300 rounded-cta px-4 py-2.5 text-sm font-mono uppercase focus:outline-none focus:ring-2 focus:ring-teal-600 disabled:opacity-50"
               />
               <button onClick={simulateQRScan}
                 disabled={!qrInput.trim() || qrState === "scanning" || loading}
-                className="px-5 py-2.5 bg-burgundy-900 hover:bg-burgundy-800 text-white text-sm font-bold rounded-cta transition-colors disabled:opacity-40">
+                className="px-5 py-2.5 bg-brand-900 hover:bg-brand-800 text-white text-sm font-bold rounded-cta transition-colors disabled:opacity-40">
                 {qrState === "scanning" ? "Checking..." : "Check In"}
               </button>
             </div>
